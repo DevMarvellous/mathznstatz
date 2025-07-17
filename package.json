@@ -1,0 +1,33 @@
+{
+  "name": "mathz-n-statz",
+  "version": "1.0.0",
+  "description": "A website for math tools and statistics with light and dark themes.",
+  "main": "src/App.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "math",
+    "statistics",
+    "react",
+    "theme-switcher",
+    "animations"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "framer-motion": "^4.1.17"
+  },
+  "devDependencies": {},
+  "homepage": "http://yourwebsite.com",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yourusername/mathz-n-statz.git"
+  }
+}
