@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Calculator-specific styles */
+    .calculator {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      border: 2px solid var(--accent-color);
+    }
+    .calculator input {
+      user-select: text; /* Allow input selection */
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      border: 1px solid var(--accent-color);
+      border-radius: 4px;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+    .calculator input:focus {
+      outline: none;
+      border-color: #1e90ff; /* Bright blue on focus */
+    }
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+    .calculator-buttons button {
+      padding: 10px;
+      font-size: 1.1em;
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .calculator-buttons button:hover {
+      background: #1e90ff; /* Bright blue hover */
+      transform: scale(1.05);
+    }
+    .calculator-buttons button.operator {
+      background: #ff6347; /* Red for operators */
+    }
+    .calculator-buttons button.operator:hover {
+      background: #ff4500;
+    }
+    .calculator-buttons button.action {
+      background: #32cd32; /* Green for actions */
+    }
+    .calculator-buttons button.action:hover {
+      background: #228b22;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="calcInput" value="0">
+    <input type="text" id="calcOutput" readonly placeholder="Result">
+    <div class="calculator-buttons">
+      <button class="action" onclick="clearInput()">C</button>
+      <button onclick="appendInput('(')">(</button>
+      <button onclick="appendInput(')')">)</button>
+      <button class="operator" onclick="appendInput('√')">√</button>
+      <button onclick="appendInput('7')">7</button>
+      <button onclick="appendInput('8')">8</button>
+      <button onclick="appendInput('9')">9</button>
+      <button class="operator" onclick="appendInput('÷')">÷</button>
+      <button onclick="appendInput('4')">4</button>
+      <button onclick="appendInput('5')">5</button>
+      <button onclick="appendInput('6')">6</button>
+      <button class="operator" onclick="appendInput('×')">×</button>
+      <button onclick="appendInput('1')">1</button>
+      <button onclick="appendInput('2')">2</button>
+      <button onclick="appendInput('3')">3</button>
+      <button class="operator" onclick="appendInput('-')">-</button>
+      <button onclick="appendInput('0')">0</button>
+      <button onclick="appendInput('.')">.</button>
+      <button class="action" onclick="deleteLast()">Del</button>
+      <button class="operator" onclick="appendInput('+')">+</button>
+      <button class="action" onclick="copyResult()"><i class="fas fa-copy"></i></button>
+      <button class="action" onclick="undo()"><i class="fas fa-undo"></i></button>
+      <button class="action" onclick="redo()"><i class="fas fa-redo"></i></button>
+      <button class="action" onclick="calculate()">=</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"></script>
+  <script>
+    // Calculator state
+    let currentInput = '';
+    let currentOutput = '';
+    let history = [];
+    let redoStack = [];
+    const calcInput = document.getElementById('calcInput');
+
+    // Append input to display
+    function appendInput(value) {
+      currentInput += value;
+      calcInput.value = currentInput;
+      redoStack = []; // Clear redo stack on new input
+    }
+
+    // Clear input and output
+    function clearInput() {
+      history.push({ input: currentInput, output: currentOutput });
+      currentInput = '';
+      currentOutput = '';
+      calcInput.value = '0';
+      document.getElementById('calcOutput').value = '';
+    }
+
+    // Delete last character
+    function deleteLast() {
+      history.push({ input: currentInput, output: currentOutput });
+      currentInput = currentInput.slice(0, -1);
+      calcInput.value = currentInput || '0';
+      redoStack = [];
+    }
+
+    // Calculate result using math.js
+    function calculate() {
+      try {
+        // Replace symbols for math.js
+        let expression = currentInput
+          .replace(/×/g, '*')
+          .replace(/÷/g, '/')
+          .replace(/√(\d+)/g, 'sqrt($1)') // Handle √4 as sqrt(4)
+          .replace(/√\(/g, 'sqrt('); // Handle √(expression)
+        let result = math.evaluate(expression);
+        if (result === Infinity || result === -Infinity) {
+          currentOutput = '∞';
+        } else {
+          currentOutput = result.toString();
+        }
+        document.getElementById('calcOutput').value = currentOutput;
+        history.push({ input: currentInput, output: currentOutput });
+        redoStack = [];
+      } catch (error) {
+        document.getElementById('calcOutput').value = 'Error';
+      }
+    }
+
+    // Copy result to clipboard
+    function copyResult() {
+      if (currentOutput) {
+        navigator.clipboard.writeText(currentOutput);
+      }
+    }
+
+    // Undo last action
+    function undo() {
+      if (history.length > 0) {
+        redoStack.push({ input: currentInput, output: currentOutput });
+        let last = history.pop();
+        currentInput = last.input || '';
+        currentOutput = last.output || '';
+        calcInput.value = currentInput || '0';
+        document.getElementById('calcOutput').value = currentOutput;
+      }
+    }
+
+    // Redo last undone action
+    function redo() {
+      if (redoStack.length > 0) {
+        history.push({ input: currentInput, output: currentOutput });
+        let next = redoStack.pop();
+        currentInput = next.input;
+        currentOutput = next.output;
+        calcInput.value = currentInput || '0';
+        document.getElementById('calcOutput').value = currentOutput;
+      }
+    }
+
+    // Handle keyboard input
+    calcInput.addEventListener('input', (e) => {
+      currentInput = e.target.value;
+      if (!currentInput) {
+        calcInput.value = '0';
+        currentInput = '';
+      }
+    });
+
+    // Allow specific keyboard inputs
+    calcInput.addEventListener('keypress', (e) => {
+      const allowedKeys = /[0-9+\-*/.()√]/;
+      if (!allowedKeys.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+
+    // Handle backspace for deletion
+    calcInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace') {
+        history.push({ input: currentInput, output: currentOutput });
+        currentInput = currentInput.slice(0, -1);
+        calcInput.value = currentInput || '0';
+        redoStack = [];
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        calculate();
+      }
+    });
+  </script>
+</body>
+</html>
