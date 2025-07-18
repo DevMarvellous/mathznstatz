@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Set character encoding and responsive viewport -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathz 'n' Statz</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Main styles -->
+  <link rel="stylesheet" href="AAA.css">
+</head>
+<body>
+  <!-- Hamburger menu toggle for mobile -->
+  <button class="hamburger" id="hamburgerToggle"><i class="fas fa-bars"></i></button>
+  <!-- Sidebar navigation -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tools</h3>
+      <a href="#"><i class="fas fa-calculator"></i> Calculator</a>
+      <a href="#"><i class="fas fa-arrows-alt-h"></i> Converter</a>
+      <a href="#"><i class="fas fa-chart-line"></i> Graphing Calculator</a>
+      <a href="#"><i class="fas fa-chart-bar"></i> Data Viz</a>
+      <!-- Dropdown for additional tools -->
+      <button class="dropdown-toggle" id="dropdownToggle"><i class="fas fa-chevron-down"></i> More Tools</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#"><i class="fas fa-equals"></i> Equation Solver</a>
+        <a href="#"><i class="fas fa-table"></i> Sheets/Tables</a>
+        <a href="#"><i class="fas fa-th"></i> Matrix Calculations</a>
+        <a href="#"><i class="fas fa-vector-square"></i> Vectors</a>
+        <a href="#"><i class="fas fa-dice"></i> Probability Calculator</a>
+        <a href="#"><i class="fas fa-question"></i> ? (Future Updates)</a>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other</h3>
+      <a href="#"><i class="fas fa-dollar-sign"></i> Donations</a>
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#"><i class="fas fa-users"></i> Credits</a>
+      <a href="#"><i class="fas fa-envelope"></i> Contact & Feedback</a>
+      <a href="#"><i class="fas fa-ellipsis-h"></i> More</a>
+    </div>
+  </nav>
+  <!-- Theme toggle button (fixed, always visible) -->
+  <button id="themeToggleButton" class="theme-toggle"><i class="fas fa-sun"></i></button>
+  <!-- Main content -->
+  <main>
+    <!-- Introduction -->
+    <section class="intro">
+      <br />
+      <h1>Mathz 'n' Statz</h1>
+      <p>Your ultimate toolkit for math, statistics, graphing, and data visualization! Dive into powerful calculators, converters, solvers, and visualizations. Perfect for students, teachers, and professionals. Growing with new tools—support us to stay free!</p>
+    </section>
+    <!-- Scrolling bar (text-only, auto-scrolling) -->
+    <section class="scrolling-bar">
+      <div class="scroll-container">
+        <div class="scroll-content">
+          <a href="#">Basic Calculator</a>
+          <a href="#">Advanced Calculator</a>
+          <a href="#">Financial Calculator</a>
+          <a href="#">Unit Converter</a>
+          <a href="#">Graphing Calculator</a>
+          <a href="#">Data Viz</a>
+          <!-- Duplicate for endless loop -->
+          <a href="#">Basic Calculator</a>
+          <a href="#">Advanced Calculator</a>
+          <a href="#">Financial Calculator</a>
+          <a href="#">Unit Converter</a>
+          <a href="#">Graphing Calculator</a>
+          <a href="#">Data Viz</a>
+        </div>
+      </div>
+    </section>
+    <!-- Tool cards -->
+    <section class="cards">
+      <div class="card">
+        <i class="fas fa-calculator"></i>
+        <h2>Calculator</h2>
+        <p>Advanced calculations and number base conversions.</p>
+        <a href="#">Go to Calculator</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-arrows-alt-h"></i>
+        <h2>Converter</h2>
+        <p>Currency and units conversions.</p>
+        <a href="#">Go to Converter</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-equals"></i>
+        <h2>Equation Solver</h2>
+        <p>Solve quadratic, simultaneous equations, and more.</p>
+        <a href="#">Go to Equation Solver</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-table"></i>
+        <h2>Sheets/Tables</h2>
+        <p>Calculate mean, median, mode, and more.</p>
+        <a href="#">Go to Sheets/Tables</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-th"></i>
+        <h2>Matrix Calculations</h2>
+        <p>Perform matrix operations.</p>
+        <a href="#">Go to Matrix Calculations</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-vector-square"></i>
+        <h2>Vectors</h2>
+        <p>Vector calculations and 2D visualizations.</p>
+        <a href="#">Go to Vectors</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-line"></i>
+        <h2>Graphing Calculator</h2>
+        <p>Plot equations, visualize functions.</p>
+        <a href="#">Go to Graphing Calculator</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-bar"></i>
+        <h2>Data Visualizations</h2>
+        <p>Create charts and analyze data.</p>
+        <a href="#">Go to Data Visualizations</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-dice"></i>
+        <h2>Probability Calculator</h2>
+        <p>Compute probabilities and distributions.</p>
+        <a href="#">Go to Probability Calculator</a>
+      </div>
+      <div class="card">
+        <i class="fas fa-question"></i>
+        <h2>? (Future Updates)</h2>
+        <p>Future updates coming soon!</p>
+        <a href="#">Explore Future Updates</a>
+      </div>
+    </section>
+    <!-- Donations section -->
+    <section class="donations">
+      <h2>Support Mathz 'n' Statz</h2>
+      <p>Your donations keep our tools free and growing! Help us add more features like Probability Calculators and Matrix Solvers. Every bit counts!</p>
+      <a href="#" class="donate-button"><i class="fas fa-dollar-sign"></i> Donate Now</a>
+    </section>
+    <!-- Testimonials section -->
+    <section class="testimonials">
+      <h2>What Our Users Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial">
+          <img src="assets/images/avatar.png" alt="User 1">
+          <h3>Jane Doe</h3>
+          <p>"Mathz 'n' Statz made my stats homework a breeze!"</p>
+        </div>
+        <div class="testimonial">
+          <img src="assets/images/avatar.png" alt="User 2">
+          <h3>John Smith</h3>
+          <p>"The graphing calculator is a game-changer for my classes."</p>
+        </div>
+        <div class="testimonial">
+          <img src="assets/images/avatar.png" alt="User 3">
+          <h3>Emily Brown</h3>
+          <p>"I love how easy it is to convert units and visualize data!"</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#"><i class="fas fa-dollar-sign"></i> Donations</a>
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      <a href="#"><i class="fas fa-users"></i> Credits</a>
+      <a href="#"><i class="fas fa-envelope"></i> Contact & Feedback</a>
+    </div>
+    <div class="social-links">
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+      <a href="https://github.com/DevMarvellous" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+    <div class="progress-tracker">
+      <p><i class="fas fa-clock"></i> Coming Soon: Probability Calculator, Matrix Solver</p>
+    </div>
+    <p class="copyright">© 2025 Mathz 'n' Statz</p>
+  </footer>
+  <!-- Main JavaScript -->
+  <script src="AAA.js"></script>
+</body>
+</html>
