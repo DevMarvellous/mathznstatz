@@ -1,0 +1,391 @@
+/* Theme variables for light and dark modes */
+:root {
+  --bg-color: #f0f8ff; /* White/light blue background */
+  --text-color: #000; /* Black text */
+  --card-bg: #fff; /* White card background */
+  --accent-color: #4682b4; /* Light blue accent */
+  --intro-color: #1e3a8a; /* Dark blue for clearer light mode text */
+}
+[data-theme="dark"] {
+  --bg-color: #1c2526; /* Black background */
+  --text-color: #fff; /* White text */
+  --card-bg: #2c3e50; /* Dark card background */
+  --accent-color: #4682b4; /* Blue accent */
+  --intro-color: #3552a4; /* White for dark mode */
+}
+
+/* Prevent text selection */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+  position: relative;
+}
+
+/* Background animation 
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><text x="10" y="20" font-size="20" fill="%231e3a8a" opacity="0.1">∫ π σ x²</text><text x="50" y="100" font-size="20" fill="%231e3a8a" opacity="0.1">y=mx+b</text></svg>') repeat;
+  animation: drift 30s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+[data-theme="dark"] body::before {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><text x="10" y="20" font-size="20" fill="%234682b4" opacity="0.1">∫ π σ x²</text><text x="50" y="100" font-size="20" fill="%234682b4" opacity="0.1">y=mx+b</text></svg>') repeat;
+} */
+
+/* Hamburger menu toggle */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: var(--accent-color);
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 7px 9px;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: var(--card-bg);
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s;
+  transition: transform 0.3s;
+}
+.sidebar-section {
+  margin-bottom: 20px;
+}
+.sidebar-section h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: var(--accent-color);
+}
+.sidebar a,
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  color: var(--text-color);
+  text-decoration: none;
+  background: var(--accent-color);
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+.sidebar a i,
+.dropdown-toggle i {
+  margin-right: 10px;
+}
+.sidebar a:hover,
+.dropdown-toggle:hover {
+  transform: scale(1.05);
+}
+.dropdown-menu {
+  display: none;
+  margin-left: 20px;
+}
+.dropdown-menu.active {
+  display: block;
+}
+.dropdown-menu a {
+  margin: 5px 0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+/* Main content */
+main {
+  margin-left: 220px;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+/* Intro section */
+.intro {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s;
+}
+.intro h1 {
+  font-size: 4.5em;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: var(--intro-color);
+}
+.intro p {
+  font-size: 1.2em;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-color);
+}
+
+/* Scrolling bar */
+.scrolling-bar {
+  overflow: hidden;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s;
+}
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.scroll-content {
+  display: inline-flex;
+  animation: autoScroll 20s linear infinite;
+}
+.scroll-content a {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 0.9em;
+  transition: transform 0.2s;
+}
+.scroll-content a:hover {
+  transform: scale(1.05);
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 0.5s;
+}
+.card i {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.card h2 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+.card a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+.card a:hover {
+  transform: scale(1.05);
+}
+
+/* Donations */
+.donations {
+  text-align: center;
+  margin: 40px 0;
+  animation: fadeIn 0.5s;
+}
+.donations h2 {
+  font-size: 2em;
+  color: var(--accent-color);
+}
+.donations p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 10px auto;
+}
+.donate-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+.donate-button i {
+  margin-right: 5px;
+}
+.donate-button:hover {
+  transform: scale(1.05);
+}
+
+/* Testimonials */
+.testimonials {
+  text-align: center;
+  margin: 40px 0;
+  animation: fadeIn 0.5s;
+}
+.testimonials h2 {
+  font-size: 2em;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.testimonial {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  filter: grayscale(50%);
+}
+[data-theme="dark"] .testimonial img {
+  filter: brightness(70%) sepia(1) hue-rotate(190deg);
+}
+.testimonial h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+.testimonial p {
+  font-size: 1em;
+  max-width: 200px;
+}
+.testimonial:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  margin-left: 220px;
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+.footer-links, .social-links {
+  margin-bottom: 20px;
+}
+.footer-links a, .social-links a {
+  margin: 0 15px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-links a i, .social-links a i {
+  margin-right: 8px;
+}
+.footer-links a:hover, .social-links a:hover {
+  color: var(--text-color);
+}
+.progress-tracker {
+  margin: 20px 0;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+.progress-tracker i {
+  margin-right: 8px;
+}
+copyright {
+  font-size: 0.9em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes autoScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 999;
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  main, footer {
+    margin-left: 0;
+  }
+  .intro h1 {
+    font-size: 2.2em;
+  }
+  .intro p {
+    font-size: 1.1em;
+  }
+  .donations h2,
+  .testimonials h2 {
+    font-size: 1.5em;
+  }
+  .donations p {
+    font-size: 1em;
+  }
+  .testimonial-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-links a, .social-links a {
+    display: block;
+    margin: 10px 0;
+  }
+}
