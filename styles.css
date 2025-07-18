@@ -21,6 +21,13 @@ body {
   padding: 0;
   transition: background 0.3s, color 0.3s; /* Smooth theme transition */
 }
+/* Disable text selection */
+body {
+  user-select: none; /* Prevents text selection */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For Edge */
+}
 
 /* Hamburger menu toggle (mobile) */
 .hamburger {
